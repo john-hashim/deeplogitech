@@ -26,7 +26,7 @@ router.get('/a',(req,res,next)=>{
             for(i=0;i<length;i++){
                 if(strarr[i].includes('href')){
                     linkbeta=strarr[i].split('/');
-                    newsarray[count].link='http://'+linkbeta[1]+'/'+linkbeta[2];
+                    newsarray[count].link='https://'+linkbeta[1]+'/'+linkbeta[2];
                     count++;
                     flag=1
                 }   
