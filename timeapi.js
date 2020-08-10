@@ -1,6 +1,8 @@
 const express=require("express");
 const https=require("https");
 const router=express.Router();
+const fs=require("fs");
+
 
 
 router.get('/a',(req,res,next)=>{
@@ -12,8 +14,20 @@ router.get('/a',(req,res,next)=>{
         });
         response.on('end',()=>{
             console.log("typeof",typeof(html));
-            var finalhtml=html.slice(72998,75190);
-            strarr=finalhtml.split(" ");
+            var flag1=0,strarr=[];
+            fullpagearray=html.split(" ");
+            fullpagearrayLength=fullpagearray.length;
+            for(var k=0;k<fullpagearrayLength;k++){
+                if(fullpagearray[k]=='decoration-arrow">Latest'){
+                    flag1=1;
+                }
+                if(fullpagearray[k]=="<section"){
+                    flag1=0;
+                }
+                if(flag1==1){
+                    strarr.push(fullpagearray[k]);
+                }
+            }
             length=strarr.length;
             var count=0,flag=0,mainarr=[];
             var newsarray=[
